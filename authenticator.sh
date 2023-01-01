@@ -5,7 +5,8 @@ source "${PROG_DIR}/.env" || exit 1
 echo "ADD TXT: $CERTBOT_VALIDATION"
 
 # Create TXT record
-CREATE_DOMAIN="_acme-challenge.$CERTBOT_DOMAIN"
+CREATE_DOMAIN="_acme-challenge" # For Arvan cloud
+# CREATE_DOMAIN="_acme-challenge.$CERTBOT_DOMAIN"
 RECORD_ID=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records" \
      -H     "Authorization: $API_KEY" \
      -H     "Content-Type: application/json" \
