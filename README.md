@@ -2,6 +2,11 @@
 **Requirements:**
 - python
 
+**Install python:**
+```bash
+sudo apt install python
+```
+Copy `.env`
 ```bash
 cp env.example .env
 ```
