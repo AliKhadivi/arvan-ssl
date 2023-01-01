@@ -1,5 +1,6 @@
 #!/bin/bash
-source .env || exit 1
+PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
+source "${PROG_DIR}/.env" || exit 1
 
 if [ -f /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS ]; then
         RECORD_IDS=$(cat /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS)

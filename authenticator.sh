@@ -1,5 +1,6 @@
 #!/bin/bash
-source .env || exit 1
+PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
+source "${PROG_DIR}/.env" || exit 1
 
 echo "ADD TXT: $CERTBOT_VALIDATION"
 

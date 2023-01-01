@@ -1,5 +1,7 @@
 #!/bin/bash
-source .env || exit 1
+PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
+source "${PROG_DIR}/.env" || exit 1
+
 
 echo "Genrate HAProxy fullchain for $CERTBOT_DOMAIN"
 cat /etc/letsencrypt/live/$CERTBOT_DOMAIN/fullchain.pem /etc/letsencrypt/live/$CERTBOT_DOMAIN/privkey.pem > /etc/haproxy/ssl/$CERTBOT_DOMAIN.pem
