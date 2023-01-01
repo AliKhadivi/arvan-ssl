@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Get your API key from https://npanel.arvancloud.com/profile/api-keys
-API_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+source .env || exit 1
 
 if [ -f /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS ]; then
         RECORD_IDS=$(cat /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS)

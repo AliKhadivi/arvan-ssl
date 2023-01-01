@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Get your API key from https://npanel.arvancloud.com/profile/api-keys
-API_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+source .env || exit 1
 
 echo "Genrate HAProxy fullchain for $CERTBOT_DOMAIN"
 cat /etc/letsencrypt/live/$CERTBOT_DOMAIN/fullchain.pem /etc/letsencrypt/live/$CERTBOT_DOMAIN/privkey.pem > /etc/haproxy/ssl/$CERTBOT_DOMAIN.pem

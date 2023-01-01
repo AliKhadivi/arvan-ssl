@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Get your API key from https://npanel.arvancloud.com/profile/api-keys
-API_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+source .env || exit 1
 
 echo "ADD TXT: $CERTBOT_VALIDATION"
 

@@ -1,6 +1,11 @@
 # Letsencrypt wildcard with HAProxy and Arvan Cloud
+**Requirements:**
+- python
 
-Command: 
+```bash
+cp env.example .env
+```
+Command:
 ```bash
 certbot certonly  --manual --preferred-challenges=dns --manual-auth-hook ./authenticator.sh --manual-cleanup-hook ./cleanup.sh  --deploy-hook ./deploy.sh  -d *.example.com -d example.com
 ```
