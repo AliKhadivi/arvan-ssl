@@ -2,9 +2,10 @@
 PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 source "${PROG_DIR}/.env" || exit 1
 
-if [ -f /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS ]; then
-        RECORD_IDS=$(cat /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS)
-        rm -f /tmp/CERTBOT_$CERTBOT_DOMAIN/RECORD_IDS
+if [ -f /tmp/certbot_$CERTBOT_DOMAIN/RECORD_IDS ]; then
+        RECORD_IDS=$(cat /tmp/certbot_$CERTBOT_DOMAIN/RECORD_IDS)
+        # rm -f /tmp/certbot_$CERTBOT_DOMAIN/RECORD_IDS
+        rm -rf /tmp/certbot_$CERTBOT_DOMAIN/
 fi
 
 # Remove the challenge TXT record from the zone
