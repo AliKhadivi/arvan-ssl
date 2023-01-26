@@ -18,7 +18,11 @@ Copy `.env`
 ```bash
 cp env.example .env
 ```
-**Notice:** You need to get the api key from your ArvanCloud panel and put it in the `.env` file
+**Notice:** You need to get the api key from your ArvanCloud panel and put it in the `.env` file.
+
+**How to get api key?**
+ -> [Persian Tutorial](https://docs.arvancloud.ir/fa/developer-tools/api/api-key) <-> [English Tutorial](https://docs.arvancloud.ir/en/developer-tools/api/api-key) <-
+
 ## Usage
 
 **Command:**
