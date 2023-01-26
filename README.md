@@ -1,4 +1,4 @@
-# Letsencrypt wildcard with Certbot and Arvan Cloud dns provider
+# Letsencrypt wildcard with Certbot and ArvanCloud dns provider
 ## Install and configuration
 ### Requirements:
 - Python
