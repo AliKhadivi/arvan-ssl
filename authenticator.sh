@@ -1,4 +1,18 @@
 #!/bin/bash
+python_path=;
+if [ -x "$(command -v python3)" ]; then
+  python_path="$(command -v python3)";
+elif [ -x "$(command -v python)" ]; then
+  python_path="$(command -v python)";
+elif [ -x "$(command -v python2)" ]; then
+  python_path="$(command -v python2)";
+fi
+if ! [ -x "${python_path}" ]
+then
+        echo "Python is not installed!"
+        exit 1
+fi
+
 PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 source "${PROG_DIR}/.env" || exit 1
 
@@ -11,7 +25,7 @@ RECORD_ID=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT
      -H     "Authorization: $API_KEY" \
      -H     "Content-Type: application/json" \
      --data '{"type":"TXT","name":"'"$CREATE_DOMAIN"'","value":{"text": "'"$CERTBOT_VALIDATION"'"},"ttl":120}' \
-             | python -c "import sys,json;print(json.load(sys.stdin)['data']['id'])")
+             | ${python_path} -c "import sys,json;print(json.load(sys.stdin)['data']['id'])")
              
 # Save info for cleanup
 if [ ! -d /tmp/certbot_$CERTBOT_DOMAIN ];then
