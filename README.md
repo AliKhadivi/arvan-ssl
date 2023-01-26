@@ -1,6 +1,7 @@
-# Letsencrypt wildcard with HAProxy and Arvan Cloud
+# Letsencrypt wildcard with Certbot and Arvan Cloud dns provider
 **Requirements:**
-- python
+- Python
+- Certbot
 
 **Install python:**
 ```bash
