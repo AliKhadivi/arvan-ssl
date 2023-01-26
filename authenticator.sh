@@ -21,11 +21,14 @@ echo "ADD TXT: $CERTBOT_VALIDATION"
 # Create TXT record
 CREATE_DOMAIN="_acme-challenge" # For Arvan cloud
 # CREATE_DOMAIN="_acme-challenge.$CERTBOT_DOMAIN"
-RECORD_ID=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records" \
+RESPONSE=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records" \
      -H     "Authorization: $API_KEY" \
      -H     "Content-Type: application/json" \
-     --data '{"type":"TXT","name":"'"$CREATE_DOMAIN"'","value":{"text": "'"$CERTBOT_VALIDATION"'"},"ttl":120}' \
-             | ${python_path} -c "import sys,json;print(json.load(sys.stdin)['data']['id'])")
+     --data '{"type":"TXT","name":"'"$CREATE_DOMAIN"'","value":{"text": "'"$CERTBOT_VALIDATION"'"},"ttl":120}')
+if [ -x ${DEBUG} ]; then
+   echo "Debug response: ${RESPONSE}"
+fi
+RECORD_ID=$(echo "$RESPONSE" | ${python_path} -c "import sys,json;print(json.load(sys.stdin)['data']['id'])")
              
 # Save info for cleanup
 if [ ! -d /tmp/certbot_$CERTBOT_DOMAIN ];then
