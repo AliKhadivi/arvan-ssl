@@ -4,7 +4,7 @@
 
 **Install python:**
 ```bash
-sudo apt install python
+sudo apt install python3
 ```
 Copy `.env`
 ```bash
