@@ -13,7 +13,7 @@ if [ -n "${RECORD_IDS}" ]; then
     for RECORD_ID in $RECORD_IDS
     do 
         echo "Remove TXT record from $CERTBOT_DOMAIN: $RECORD_ID"
-        curl -s -X DELETE "https://napi.arvancloud.com/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records/$RECORD_ID" \
+        curl -s -X DELETE "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records/$RECORD_ID" \
                 -H "Authorization: $API_KEY"
         echo
     done
