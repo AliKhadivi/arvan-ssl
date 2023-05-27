@@ -17,7 +17,6 @@ PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 source "${PROG_DIR}/.env" || exit 1
 
 echo "ADD TXT: $CERTBOT_VALIDATION"
-echo "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records"
 if [ "$(echo "$CERTBOT_DOMAIN" | cut -d "." -f 3)" == "" ] ; then
         DOMAIN="$CERTBOT_DOMAIN"
         CREATE_DOMAIN="_acme-challenge"
@@ -34,6 +33,7 @@ RESPONSE=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$DOMAIN/d
      -H     "Content-Type: application/json" \
      --data '{"type":"TXT","name":"'"$CREATE_DOMAIN"'","value":{"text": "'"$CERTBOT_VALIDATION"'"},"ttl":120}')
 if [ "${DEBUG:-false}" = "true" ]; then
+   echo "URL: https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records"
    echo "Debug response: ${RESPONSE}"
 fi
 RECORD_ID=$(echo "$RESPONSE" | ${python_path} -c "import sys,json;print(json.load(sys.stdin)['data']['id'])")
