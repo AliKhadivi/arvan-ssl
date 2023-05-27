@@ -17,11 +17,19 @@ PROG_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 source "${PROG_DIR}/.env" || exit 1
 
 echo "ADD TXT: $CERTBOT_VALIDATION"
+echo "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records"
+if [ "$(echo "$CERTBOT_DOMAIN" | cut -d "." -f 3)" == "" ] ; then
+        DOMAIN="$CERTBOT_DOMAIN"
+        CREATE_DOMAIN="_acme-challenge"
+else
+        DOMAIN="$(echo "$CERTBOT_DOMAIN" | cut -d "." -f 2).$(echo "$CERTBOT_DOMAIN" | cut -d "." -f 3)"
+        CREATE_DOMAIN="_acme-challenge.$(echo "$CERTBOT_DOMAIN" | cut -d "." -f 1)"
+fi
 
 # Create TXT record
-CREATE_DOMAIN="_acme-challenge" # For Arvan cloud
+#CREATE_DOMAIN="_acme-challenge" # For Arvan cloud
 # CREATE_DOMAIN="_acme-challenge.$CERTBOT_DOMAIN"
-RESPONSE=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$CERTBOT_DOMAIN/dns-records" \
+RESPONSE=$(curl -s -X POST "https://napi.arvancloud.ir/cdn/4.0/domains/$DOMAIN/dns-records" \
      -H     "Authorization: $API_KEY" \
      -H     "Content-Type: application/json" \
      --data '{"type":"TXT","name":"'"$CREATE_DOMAIN"'","value":{"text": "'"$CERTBOT_VALIDATION"'"},"ttl":120}')
