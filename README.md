@@ -27,7 +27,7 @@ cp env.example .env
 
 **Command:**
 ```bash
-certbot certonly  --manual --preferred-challenges=dns --manual-auth-hook ./authenticator.sh --manual-cleanup-hook ./cleanup.sh  --deploy-hook ./deploy.sh  -d *.example.com -d example.com
+certbot certonly  --manual --preferred-challenges=dns --manual-auth-hook "$(realpath ./authenticator.sh)" --manual-cleanup-hook "$(realpath ./cleanup.sh)"  --deploy-hook "$(realpath ./deploy.sh)"  -d *.example.com -d example.com
 ```
 
 **Check  Certificate’s Expiration Date:**
